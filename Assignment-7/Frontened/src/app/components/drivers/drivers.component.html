@@ -1,0 +1,48 @@
+<h2 class="text-primary fw-bold mb-4">Drivers</h2>
+
+<!-- Add New Driver Form -->
+<div class="card p-3 mb-4 shadow-sm driver-form-card">
+  <h5>Add New Driver</h5>
+  <div class="row g-3">
+    <div class="col-md-4">
+      <input [(ngModel)]="newDriver.name" class="form-control" placeholder="Driver Name">
+    </div>
+    <div class="col-md-4">
+      <input [(ngModel)]="newDriver.licenseNumber" class="form-control" placeholder="License Number">
+    </div>
+    <div class="col-md-4">
+      <input [(ngModel)]="newDriver.phoneNumber" class="form-control" placeholder="Phone Number">
+    </div>
+  </div>
+  <button class="btn btn-success mt-3" (click)="addDriver()">Add Driver</button>
+</div>
+
+<!-- Driver List Table -->
+<div class="card shadow-sm driver-list-card">
+  <div class="card-header bg-primary text-white">Driver List</div>
+  <div class="card-body p-0">
+    <table class="foam-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>License</th>
+          <th>Phone</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let d of drivers">
+          <td>{{ d.name }}</td>
+          <td>{{ d.licenseNumber }}</td>
+          <td>{{ d.phoneNumber }}</td>
+          <td>
+            <button class="btn btn-danger btn-sm" (click)="deleteDriver(d.driverId)">Delete</button>
+          </td>
+        </tr>
+        <tr *ngIf="drivers.length === 0">
+          <td colspan="4" class="text-center text-muted">No drivers available</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

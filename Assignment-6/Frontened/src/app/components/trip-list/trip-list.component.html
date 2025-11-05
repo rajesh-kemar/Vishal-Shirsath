@@ -1,0 +1,28 @@
+<h2>All Trips</h2>
+
+<table border="1" cellpadding="5" cellspacing="0">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Vehicle ID</th>
+      <th>Driver ID</th>
+      <th>Source</th>
+      <th>Destination</th>
+      <th>Start Time</th>
+      <th>End Time</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let trip of trips">
+      <td>{{ trip.id }}</td>
+      <td>{{ trip.vehicleId }}</td>
+      <td>{{ trip.driverId }}</td>
+      <td>{{ trip.source }}</td>
+      <td>{{ trip.destination }}</td>
+      <td>{{ trip.startTime }}</td>
+      <td>{{ trip.endTime }}</td>
+      <td>{{ trip.status }}</td>
+    </tr>
+  </tbody>
+</table>

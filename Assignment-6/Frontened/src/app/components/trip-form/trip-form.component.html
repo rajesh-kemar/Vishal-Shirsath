@@ -1,0 +1,59 @@
+<div class="container mt-4">
+  <h3>Create Trip</h3>
+  <form [formGroup]="tripForm" (ngSubmit)="createTrip()">
+    
+    <div class="mb-2">
+      <label>Vehicle ID</label>
+      <input type="number" class="form-control" formControlName="vehicleId" required />
+    </div>
+
+    <div class="mb-2">
+      <label>Driver ID</label>
+      <input type="number" class="form-control" formControlName="driverId" required />
+    </div>
+
+    <div class="mb-2">
+      <label>Vehicle Type</label>
+      <select class="form-control" formControlName="vehicleType" required>
+        <option value="" disabled selected>Select Vehicle Type</option>
+        <option value="Truck">Truck</option>
+        <option value="Tanker">Tanker</option>
+        <option value="Trailer">Trailer</option>
+        <option value="Mini-Truck">Mini-Truck</option>
+      </select>
+    </div>
+
+    <div class="mb-2">
+      <label>Source</label>
+      <input type="text" class="form-control" formControlName="source" required />
+    </div>
+
+    <div class="mb-2">
+      <label>Destination</label>
+      <input type="text" class="form-control" formControlName="destination" required />
+    </div>
+
+    <div class="mb-2">
+      <label>Start Time</label>
+      <input type="datetime-local" class="form-control" formControlName="startTime" required />
+    </div>
+
+    <div class="mb-2">
+      <label>End Time</label>
+      <input type="datetime-local" class="form-control" formControlName="endTime" required />
+    </div>
+
+    <div class="mb-2">
+      <label>Status</label>
+      <select class="form-control" formControlName="status" required>
+        <option value="Scheduled">Scheduled</option>
+        <option value="in-progress">in-progress</option>
+        <option value="available">available</option>
+      </select>
+    </div>
+
+    <button class="btn btn-primary mt-2" type="submit" [disabled]="tripForm.invalid">
+      Create Trip
+    </button>
+  </form>
+</div>

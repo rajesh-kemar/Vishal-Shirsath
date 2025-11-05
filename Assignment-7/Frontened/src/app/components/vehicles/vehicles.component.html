@@ -1,0 +1,54 @@
+<h2 class="text-primary fw-bold mb-4">Vehicles</h2>
+
+<!-- Add New Vehicle Form -->
+<div class="card p-3 mb-4 shadow-sm">
+  <h5>Add New Vehicle</h5>
+  <div class="row g-3">
+    <div class="col-md-4">
+      <input [(ngModel)]="newVehicle.vehicleNumber" class="form-control" placeholder="Vehicle Number">
+    </div>
+    <div class="col-md-4">
+      <input [(ngModel)]="newVehicle.type" class="form-control" placeholder="Type (Truck, Van, etc)">
+    </div>
+    <div class="col-md-4">
+      <input type="number" [(ngModel)]="newVehicle.capacity" class="form-control" placeholder="Capacity (Tons)">
+    </div>
+  </div>
+  <button class="btn btn-success mt-3" (click)="addVehicle()">Add Vehicle</button>
+
+  <div *ngIf="successMsg" class="alert alert-success mt-2">
+    {{ successMsg }}
+  </div>
+</div>
+
+<!-- Vehicle List -->
+<div class="card shadow-sm">
+  <div class="card-header bg-primary text-white">Vehicle List</div>
+  <div class="card-body p-0">
+    <table class="table table-striped table-hover m-0">
+      <thead class="table-light">
+        <tr>
+          <th>Vehicle Number</th>
+          <th>Type</th>
+          <th>Capacity (Tons)</th>
+          <th>Availability</th> <!-- ✅ New column -->
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let v of vehicles">
+          <td>{{ v.vehicleNumber }}</td>
+          <td>{{ v.type }}</td>
+          <td>{{ v.capacity }}</td>
+          <td>{{ v.availability }}</td> <!-- ✅ Display string from API -->
+          <td>
+            <button class="btn btn-danger btn-sm" (click)="deleteVehicle(v.vehicleId)">Delete</button>
+          </td>
+        </tr>
+        <tr *ngIf="vehicles.length === 0">
+          <td colspan="5" class="text-center text-muted">No vehicles available</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

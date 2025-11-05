@@ -1,0 +1,18 @@
+<!-- src/app/app.component.html -->
+
+<nav style="background-color: #0d6efd; color: rgb(255, 255, 255); padding: 10px;">
+  <strong style="font-size: 20px;">LogisticApp</strong>
+  <span style="float: right;">
+    <a routerLink="/dashboard" routerLinkActive="active" style="color: rgb(0, 0, 0); margin-right: 15px;">Dashboard</a>
+    <a routerLink="/drivers" routerLinkActive="active" style="color: rgb(0, 0, 0); margin-right: 15px;">Drivers</a>
+    <a routerLink="/vehicles" routerLinkActive="active" style="color: rgb(0, 0, 0); margin-right: 15px;">Vehicles</a>
+    <a routerLink="/trips" routerLinkActive="active" style="color: rgb(0, 0, 0);">Trips</a>
+  </span>
+</nav>
+
+<hr />
+
+<div style="padding: 20px;">
+  <!-- This is where Angular loads pages -->
+  <router-outlet></router-outlet>
+</div>

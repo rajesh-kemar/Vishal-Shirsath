@@ -1,0 +1,98 @@
+<div class="container mt-4">
+
+  <!-- Buttons -->
+  <div class="d-flex gap-3 mb-3">
+    <button class="btn btn-warning" (click)="showActive()">Active Trips</button>
+    <button class="btn btn-success" (click)="showCompleted()">Completed Trips</button>
+    <button class="btn btn-primary" (click)="showAvailable()">Available Vehicles</button>
+  </div>
+
+  <!-- Active Trips Table -->
+  <div *ngIf="showActiveTrips">
+    <h4 class="text-warning fw-bold mb-3">Active Trips</h4>
+    <table class="table table-bordered table-striped">
+      <thead class="table-light">
+        <tr>
+          <th>Driver</th>
+          <th>Vehicle</th>
+          <th>Source</th>
+          <th>Destination</th>
+          <th>Start Time</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let trip of activeTrips">
+          <td>{{ trip.driverName }}</td>
+          <td>{{ trip.vehicleNumber }}</td>
+          <td>{{ trip.source }}</td>
+          <td>{{ trip.destination }}</td>
+          <td>{{ trip.startTime | date:'short' }}</td>
+          <td>{{ trip.status }}</td>
+        </tr>
+        <tr *ngIf="activeTrips.length === 0">
+          <td colspan="6" class="text-center text-muted">No active trips</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Completed Trips Table -->
+  <div *ngIf="showCompletedTrips">
+    <h4 class="text-success fw-bold mb-3">Completed Trips</h4>
+    <table class="table table-bordered table-striped">
+      <thead class="table-light">
+        <tr>
+          <th>Driver</th>
+          <th>Vehicle</th>
+          <th>Source</th>
+          <th>Destination</th>
+          <th>Start Time</th>
+          <th>End Time</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let trip of completedTrips">
+          <td>{{ trip.driverName }}</td>
+          <td>{{ trip.vehicleNumber }}</td>
+          <td>{{ trip.source }}</td>
+          <td>{{ trip.destination }}</td>
+          <td>{{ trip.startTime | date:'short' }}</td>
+          <td>{{ trip.endTime | date:'short' }}</td>
+          <td>{{ trip.status }}</td>
+        </tr>
+        <tr *ngIf="completedTrips.length === 0">
+          <td colspan="7" class="text-center text-muted">No completed trips</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Available Vehicles Table -->
+  <div *ngIf="showAvailableVehicles">
+    <h4 class="text-primary fw-bold mb-3">Available Vehicles</h4>
+    <table class="table table-bordered table-striped">
+      <thead class="table-light">
+        <tr>
+          <th>Vehicle Number</th>
+          <th>Type</th>
+          <th>Capacity</th>
+          <th>Availability</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let vehicle of availableVehicles">
+          <td>{{ vehicle.vehicleNumber }}</td>
+          <td>{{ vehicle.type }}</td>
+          <td>{{ vehicle.capacity }}</td>
+          <td>{{ vehicle.isAvailable ? 'Yes' : 'No' }}</td>
+        </tr>
+        <tr *ngIf="availableVehicles.length === 0">
+          <td colspan="4" class="text-center text-muted">No available vehicles</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>

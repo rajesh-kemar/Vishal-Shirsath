@@ -1,0 +1,70 @@
+<h2>Trips</h2>
+
+<!-- Create Trip -->
+<div class="card p-3 mb-3 shadow-sm">
+  <h3 class="text-primary mb-3">Create New Trip</h3>
+
+  <label>Driver:</label>
+  <select [(ngModel)]="newTrip.driverId" class="form-select mb-2">
+    <option value="0">-- Select Driver --</option>
+    <option *ngFor="let d of drivers" [value]="d.driverId">{{ d.name }}</option>
+  </select>
+
+  <label>Vehicle:</label>
+  <select [(ngModel)]="newTrip.vehicleId" class="form-select mb-2">
+    <option value="0">-- Select Vehicle --</option>
+    <option *ngFor="let v of vehicles" [value]="v.vehicleId">{{ v.vehicleNumber }}</option>
+  </select>
+
+  <label>Source:</label>
+  <input type="text" [(ngModel)]="newTrip.source" class="form-control mb-2" placeholder="Enter source location" />
+
+  <label>Destination:</label>
+  <input type="text" [(ngModel)]="newTrip.destination" class="form-control mb-2" placeholder="Enter destination location" />
+
+  <label>Start Time:</label>
+  <input type="datetime-local" [(ngModel)]="newTrip.startTime" class="form-control mb-2" />
+
+  <label>End Time (optional):</label>
+  <input type="datetime-local" [(ngModel)]="newTrip.endTime" class="form-control mb-2" />
+
+  <button class="btn btn-primary mt-2" (click)="addTrip()">Create Trip</button>
+</div>
+
+<!-- Trips List -->
+<h3>All Trips</h3>
+<table class="table table-bordered table-striped table-hover shadow-sm">
+  <thead class="table-light">
+    <tr>
+      <th>Driver</th>
+      <th>Vehicle</th>
+      <th>Source</th>
+      <th>Destination</th>
+      <th>Status</th>
+      <th>Start</th>
+      <th>End</th>
+      <th>Extended?</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let t of trips">
+      <td>{{ t.driverName }}</td>
+      <td>{{ t.vehicleNumber }}</td>
+      <td>{{ t.source }}</td>
+      <td>{{ t.destination }}</td>
+      <td>{{ t.status }}</td>
+      <td>{{ t.startTime | date:'short' }}</td>
+      <td>{{ t.endTime ? (t.endTime | date:'short') : '-' }}</td>
+      <td>{{ t.isExtended ? 'Yes' : 'No' }}</td>
+      <td>
+        <button *ngIf="t.status.toLowerCase() === 'active'" class="btn btn-success btn-sm" (click)="completeTrip(t.tripId)">
+          Complete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+

@@ -1,0 +1,20 @@
+.navbar {
+  background: #0d6efd;
+  color: white;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 15px;
+}
+.nav-links a {
+  color: white;
+  text-decoration: none;
+}
+.nav-links a.active {
+  text-decoration: underline;
+}
