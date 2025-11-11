@@ -1,0 +1,59 @@
+<div class="dashboard container mt-4">
+  <h2 class="dashboard-title text-center">Welcome, {{ username | titlecase }}</h2>
+
+  <!-- DRIVER DASHBOARD -->
+  <div *ngIf="role === 'driver' && driver" class="driver-summary mt-4">
+    <div class="card p-3 mb-3 shadow-sm">
+      <h4>Your Details</h4>
+      <p><strong>Name:</strong> {{ driver.name }}</p>
+      <p><strong>Phone:</strong> {{ driver.phoneNumber }}</p>
+      <p><strong>License Number:</strong> {{ driver.licenseNumber }}</p>
+
+      <hr />
+
+      <h5>Trips Summary</h5>
+      <div class="d-flex justify-content-between mt-2">
+        <div class="p-2 text-center border rounded shadow-sm flex-fill mx-1 bg-light">
+          <h3>{{ driverActiveTrips }}</h3>
+          <p>Active Trips</p>
+        </div>
+        <div class="p-2 text-center border rounded shadow-sm flex-fill mx-1 bg-light">
+          <h3>{{ driverCompletedTrips }}</h3>
+          <p>Completed Trips</p>
+        </div>
+        <div class="p-2 text-center border rounded shadow-sm flex-fill mx-1 bg-light">
+          <h3>{{ totalHoursDriven | number:'1.1-2' }}</h3>
+          <p>Total Hours Driven</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DISPATCHER DASHBOARD -->
+  <div *ngIf="role === 'dispatcher'" class="summary mt-4">
+    <div class="row g-3">
+      <div class="col-md-4">
+        <div class="p-3 border rounded shadow-sm text-center bg-light">
+          <h3>{{ activeTrips }}</h3>
+          <p>Active Trips</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="p-3 border rounded shadow-sm text-center bg-light">
+          <h3>{{ completedTrips }}</h3>
+          <p>Completed Trips</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="p-3 border rounded shadow-sm text-center bg-light">
+          <h3>{{ availableVehicles }}</h3>
+          <p>Available Vehicles</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="errorMessage" class="text-danger mt-3 text-center">
+    {{ errorMessage }}
+  </div>
+</div>

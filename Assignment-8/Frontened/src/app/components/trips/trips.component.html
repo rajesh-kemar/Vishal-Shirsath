@@ -1,0 +1,113 @@
+<div class="container mt-4">
+  <h2 class="text-center mb-4">Trip Management</h2>
+
+  <!-- Dispatcher Only: Trip Form -->
+  <div *ngIf="role === 'dispatcher'" class="card p-3 mb-4 shadow-sm">
+    <h4>{{ selectedTripId ? 'Edit Trip' : 'Create New Trip' }}</h4>
+
+    <form (ngSubmit)="addOrUpdateTrip()" #tripForm="ngForm">
+      <div class="row g-3">
+        <div class="col-md-3">
+          <label>Driver</label>
+          <select class="form-select" name="driverId" [(ngModel)]="newTrip.driverId" required>
+            <option value="0">Select Driver</option>
+            <option *ngFor="let d of drivers" [value]="d.driverId">{{ d.name }}</option>
+          </select>
+        </div>
+
+        <div class="col-md-3">
+          <label>Vehicle</label>
+          <select class="form-select" name="vehicleType" [(ngModel)]="newTrip.vehicleType" required>
+            <option value="">Select Vehicle</option>
+            <option *ngFor="let v of vehicles" [value]="v.type">{{ v.type }}</option>
+          </select>
+        </div>
+
+        <div class="col-md-3">
+          <label>Source</label>
+          <input type="text" class="form-control" name="source" [(ngModel)]="newTrip.source" required />
+        </div>
+
+        <div class="col-md-3">
+          <label>Destination</label>
+          <input type="text" class="form-control" name="destination" [(ngModel)]="newTrip.destination" required />
+        </div>
+      </div>
+
+      <div class="row mt-3">
+        <div class="col-md-3">
+          <label>Start Time</label>
+          <input type="datetime-local" class="form-control" name="startTime" [(ngModel)]="newTrip.startTime" />
+        </div>
+
+        <div class="col-md-3 align-self-end">
+          <button class="btn btn-primary" type="submit">{{ selectedTripId ? 'Update Trip' : 'Create Trip' }}</button>
+          <button class="btn btn-secondary ms-2" type="button" (click)="resetForm()">Reset</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <!-- Trip Table -->
+  <div class="card p-3 shadow-sm">
+    <h4>{{ role === 'dispatcher' ? 'All Trips' : 'My Trips' }}</h4>
+
+    <div *ngIf="isLoading" class="text-center my-3">
+      <div class="spinner-border text-primary"></div>
+    </div>
+
+    <div *ngIf="errorMsg" class="alert alert-danger">{{ errorMsg }}</div>
+
+    <table class="table table-striped table-hover mt-3" *ngIf="!isLoading && trips.length > 0">
+      <thead class="table-light">
+        <tr>
+          <th>ID</th>
+          <th>Driver</th>
+          <th>Vehicle</th>
+          <th>Source</th>
+          <th>Destination</th>
+          <th>Start Time</th>
+          <th>End Time</th>
+          <th>Status</th>
+          <th>Duration (hrs)</th>
+          <th>Extended</th>
+          <th *ngIf="role === 'dispatcher'">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let t of trips">
+          <td>{{ t.tripId }}</td>
+          <td>{{ t.driverName || 'N/A' }}</td>
+          <td>{{ t.vehicleType }}</td>
+          <td>{{ t.source }}</td>
+          <td>{{ t.destination }}</td>
+          <td>{{ t.startTime | date:'short' }}</td>
+          <td>{{ t.endTime ? (t.endTime | date:'short') : '-' }}</td>
+          <td>
+            <span
+              class="badge"
+              [ngClass]="{
+                'bg-success': t.status === 'Completed',
+                'bg-warning': t.status === 'Active'
+              }"
+            >
+              {{ t.status }}
+            </span>
+          </td>
+          <td>{{ t.durationHours?.toFixed(2) || '-' }}</td>
+          <td>{{ t.isExtended ? 'Yes' : 'No' }}</td>
+          <td *ngIf="role === 'dispatcher'">
+            <button class="btn btn-sm btn-warning me-2" (click)="editTrip(t)">Edit</button>
+            <button class="btn btn-sm btn-success me-2" [disabled]="t.status === 'Completed'" (click)="completeTrip(t.tripId!)">Complete</button>
+            <button class="btn btn-sm btn-danger" (click)="deleteTrip(t.tripId!)">Delete</button>
+          </td>
+        </tr>
+
+        <!-- Empty state -->
+        <tr *ngIf="!isLoading && trips.length === 0">
+          <td colspan="11" class="text-center text-muted py-3">No trips available</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

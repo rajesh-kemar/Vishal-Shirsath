@@ -1,0 +1,77 @@
+<header class="app-header">
+  <h1>🚛 Logistic App</h1>
+</header>
+
+<div class="register-container">
+  <h2>Register</h2>
+
+  <form (ngSubmit)="onSubmit()">
+    <label for="role">Select Role:</label>
+    <select
+      id="role"
+      [(ngModel)]="role"
+      name="role"
+      (change)="onRoleChange($event)"
+    >
+      <option value="driver">driver</option>
+      <option value="dispatcher">dispatcher</option>
+    </select>
+
+    <!-- Show these fields only if role = driver -->
+    <div *ngIf="role === 'driver'">
+      <label for="name">Full Name:</label>
+      <input
+        id="name"
+        type="text"
+        [(ngModel)]="name"
+        name="name"
+        placeholder="Enter full name"
+      />
+
+      <label for="licenseNumber">License Number:</label>
+      <input
+        id="licenseNumber"
+        type="text"
+        [(ngModel)]="licenseNumber"
+        name="licenseNumber"
+        placeholder="Enter license number"
+      />
+
+      <label for="phoneNumber">Phone Number:</label>
+      <input
+        id="phoneNumber"
+        type="text"
+        [(ngModel)]="phoneNumber"
+        name="phoneNumber"
+        placeholder="Enter phone number"
+      />
+    </div>
+
+    <label for="username">Username:</label>
+    <input
+      id="username"
+      type="text"
+      [(ngModel)]="username"
+      name="username"
+      placeholder="Enter username"
+      required
+    />
+
+    <label for="password">Password:</label>
+    <input
+      id="password"
+      type="password"
+      [(ngModel)]="password"
+      name="password"
+      placeholder="Enter password"
+      required
+    />
+
+    <button type="submit">Register</button>
+  </form>
+
+  <div class="register-link">
+    Already have an account?
+    <a [routerLink]="['/login']">Login here</a>
+  </div>
+</div>

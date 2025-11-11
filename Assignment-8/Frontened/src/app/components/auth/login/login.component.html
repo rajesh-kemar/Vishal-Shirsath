@@ -1,0 +1,38 @@
+<!-- Header / Navbar -->
+<header class="app-header">
+  <h1>🚛 Logistic App</h1>
+</header>
+
+<div class="login-container">
+  <h2>Login</h2>
+
+  <div class="error" *ngIf="errorMessage">{{ errorMessage }}</div>
+
+  <form (ngSubmit)="onSubmit()">
+    <label for="username">Username:</label>
+    <input
+      id="username"
+      type="text"
+      [(ngModel)]="username"
+      name="username"
+      placeholder="Enter username"
+      required
+    />
+
+    <label for="password">Password:</label>
+    <input
+      id="password"
+      type="password"
+      [(ngModel)]="password"
+      name="password"
+      placeholder="Enter password"
+      required
+    />
+
+    <button type="submit">Login</button>
+  </form>
+
+  <div class="register-link">
+    New user? <a [routerLink]="['/register']">Register here</a>
+  </div>
+</div>

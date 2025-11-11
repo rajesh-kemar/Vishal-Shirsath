@@ -1,0 +1,32 @@
+<!-- Navbar -->
+<nav *ngIf="auth.isLoggedIn()" class="navbar">
+  <div class="nav-left">
+    <span class="brand">
+      {{ auth.getRole() === 'driver' ? 'Driver Panel' : 'Dispatcher Panel' }}
+    </span>
+  </div>
+
+  <div class="nav-center">
+    <!-- Dispatcher Links -->
+    <ng-container *ngIf="auth.getRole() === 'dispatcher'">
+      <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+      <a routerLink="/drivers" routerLinkActive="active">Drivers</a>
+      <a routerLink="/vehicles" routerLinkActive="active">Vehicles</a>
+      <a routerLink="/trips" routerLinkActive="active">Trips</a>
+    </ng-container>
+
+    <!-- Driver Links -->
+    <ng-container *ngIf="auth.getRole() === 'driver'">
+      <a routerLink="/dashboard" routerLinkActive="active">🏠 Dashboard</a>
+      <a routerLink="/trips" routerLinkActive="active">🗺️ My Trips</a>
+    </ng-container>
+  </div>
+
+  <div class="nav-right">
+    <span class="username">{{ auth.getUsername() }}</span>
+    <button (click)="logout()">Logout</button>
+  </div>
+</nav>
+
+<!-- Main Router Outlet -->
+<router-outlet></router-outlet>

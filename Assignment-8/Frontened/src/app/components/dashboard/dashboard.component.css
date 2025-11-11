@@ -1,0 +1,93 @@
+.dashboard {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.dashboard-title {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.driver-summary .card {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.driver-summary h4 {
+  margin-bottom: 15px;
+  color: #555;
+}
+
+.driver-summary p {
+  margin: 5px 0;
+  font-size: 15px;
+  color: #444;
+}
+
+.driver-summary hr {
+  margin: 15px 0;
+  border: 0;
+  border-top: 1px solid #ddd;
+}
+
+.driver-summary h5 {
+  margin-bottom: 10px;
+  color: #555;
+}
+
+.driver-summary .d-flex {
+  display: flex;
+  gap: 10px;
+}
+
+.driver-summary .d-flex > div {
+  flex: 1;
+  background-color: #fff;
+  border-radius: 6px;
+  padding: 10px 0;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+.driver-summary .d-flex h3 {
+  margin: 0;
+  color: #007bff;
+  font-size: 22px;
+}
+
+.driver-summary .d-flex p {
+  margin: 0;
+  font-size: 14px;
+  color: #555;
+}
+
+/* Dispatcher dashboard styles */
+.summary .row > div {
+  margin-bottom: 15px;
+}
+
+.summary .p-3 {
+  background-color: #f7f7f7;
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+.summary h3 {
+  color: #007bff;
+  font-size: 22px;
+}
+
+.summary p {
+  color: #555;
+  font-size: 14px;
+}
+
+/* Error message */
+.text-danger {
+  color: #d9534f;
+  font-weight: 500;
+}
